@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'CircularStd-Medium';
+    src: url(../public/CircularStd-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'CircularStd-Bold';
+    src: url(../public/CircularStd-Bold.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@theme {
+    --font-Circular-Medium: "CircularStd-Medium", "sans-serif";
+    --font-Circular-Bold: "CircularStd-Bold", "sans-serif";
+    --color-nav-green: #4CAF50;
+    --color-btn-green: #D3E7C0;
+    --color-white: #FFFFFF;
+    --color-sec-orange: #FF9800;
+    --color-bg-cream: #F5F5DC;
+    --color-txt-black: #323031;
+}
