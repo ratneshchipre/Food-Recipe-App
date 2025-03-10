@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   return (
@@ -18,15 +21,27 @@ const Navbar = () => {
           <ul className='flex gap-[1rem] font-Circular-Medium'>
 
             <li className='text-[1rem] sm:text-[1.2rem] cursor-pointer'>
-              <NavLink to='/' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] rounded-[0.6rem] transition`}>
+
+              <NavLink to='/' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] hidden rounded-[0.6rem] transition`}>
                 Home
               </NavLink>
+
+              <NavLink to='/' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] flex justify-center items-center rounded-[0.6rem] transition`}>
+                <FontAwesomeIcon icon={faHome} />
+              </NavLink>
+
             </li>
 
             <li className='text-[1rem] sm:text-[1.2rem] cursor-pointer'>
-              <NavLink to='/favorites' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] rounded-[0.6rem] transition`}>
+
+              <NavLink to='/favorites' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] hidden rounded-[0.6rem] transition`}>
                 Favorites
               </NavLink>
+
+              <NavLink to='/favorites' className={({ isActive }) => `${isActive ? 'bg-white' : ''} ${isActive ? 'text-txt-black' : 'text-white'} py-[0.5rem] px-[0.7rem] flex justify-center items-center rounded-[0.6rem] transition`}>
+                <FontAwesomeIcon icon={faHeart} />
+              </NavLink>
+
             </li>
 
           </ul>

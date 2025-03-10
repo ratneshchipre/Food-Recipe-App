@@ -2,29 +2,30 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import test_Img from "../assets/test_Img.jpg";
 
-const RecipeCard = () => {
+const RecipeCard = ({ recipe }) => {
     return (
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-between overflow-hidden p-[1.2rem] bg-card-green shadow-[0_0_20px_rgba(0,0,0,0.05)] rounded-2xl min-w-[10rem] max-w-[20rem] h-[20rem] cursor-pointer'>
 
-            <div className='w-[15rem] h-[18rem] overflow-hidden border-t-[1.5px] border-x-[1.5px] border-border shadow-[1px_0_10px_rgba(0,0,0,0.1)] hover:brightness-85 transition'>
-                {/* <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className='rounded-t-[0.5rem] h-[16rem] sm:h-[18rem] w-full object-cover bg-center'
-                    alt={movie.title}
-                /> */}
+            <div className='w-full h-[11rem]'>
+                <img
+                    src={recipe.strCategoryThumb}
+                    className='rounded-2xl h-full w-full object-cover bg-center'
+                    alt='recipe img'
+                />
             </div>
 
-            <div className='w-[15rem] h-[7rem] bg-bg-cream p-[0.5rem] absolute mb-[-16.5rem] border-b-[1.5px] border-x-[1.5px] border-border'>
+            <div className='w-full text-txt-black relative flex flex-col gap-1'>
 
-                <p className='font-[500] text-text line-clamp-2 overflow-hidden [-webkit-box-orient:vertical] [display:-webkit-box]'>Recipe Ex Text</p>
+                <p className='font-Circular-Bold text-[1.3rem] line-clamp-2 overflow-hidden [-webkit-box-orient:vertical] [display:-webkit-box]'>{recipe.strCategory
+                }</p>
 
-                <p className='font-[500] text-wrap text-gray-500 inline'></p>
+                <p className='font-Circular-Medium text-[1.1rem] text-wrap line-clamp-2 overflow-hidden [-webkit-box-orient:vertical] [display:-webkit-box]'>{recipe.strCategoryDescription
+                }</p>
 
-                <button
-                    className='absolute right-2.5 top-[-15.3rem] sm:top-[-16.8rem] h-[2rem] w-[2rem] rounded-[50%] text-center bg-fav-bg text-background cursor-pointer'
-
-                >
-                    <FontAwesomeIcon icon={faHeartRegular} />
+                <button className='absolute right-0 bottom-0 rounded-[50%] text-center text-txt-black cursor-pointer'>
+                    <FontAwesomeIcon icon={faHeartSolid} className='text-[1.4rem]' />
                 </button>
 
             </div>
