@@ -3,7 +3,7 @@ import HeroSec from '../components/HeroSec'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import RecipeCard from '../components/RecipeCard'
-import { getPopularRecipes } from '../services/api'
+import { getPopularRecipes, getRecipeBySearch } from '../services/api'
 
 const Home = () => {
   const inputRef = useRef()
@@ -28,13 +28,24 @@ const Home = () => {
     loadPopularRecipes()
   }, [])
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault()
     const inputValue = inputRef.current.value.trim()
     if (!inputValue) return
     if (loading) return
 
     setLoading(true)
+
+    try {
+      setLoading(true)
+      const searchedRecipes = await getRecipeBySearch(inputValue)
+      setRecipes(searchedRecipes)
+    } catch (error) {
+      setError('Failed to load movies...')
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
