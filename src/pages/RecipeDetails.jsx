@@ -25,16 +25,20 @@ import youtube_Logo from '../assets/youtube_Logo.png';
 const RecipeDetails = () => {
   const { selectedRecipe } = useRecipeContext();
   const { id } = useParams();
-  const [recipe, setRecipe] = useState(selectedRecipe);
+  const storedRecipe = localStorage.getItem('recipe');
+  const [recipe, setRecipe] = useState(storedRecipe ? JSON.parse(storedRecipe) : selectedRecipe);
   const [isInsActive, setIsInsActive] = useState(false)
 
   useEffect(() => {
-    if (!selectedRecipe) {
+    if (!recipe) {
       const fetchRecipe = async () => {
         try {
           const data = await getRecipeBySearch("");
           const foundRecipe = data.find((meal) => meal.idMeal === id);
-          setRecipe(foundRecipe);
+          if (foundRecipe) {
+            setRecipe(foundRecipe);
+            localStorage.setItem('recipe', JSON.stringify(foundRecipe));
+          }
         } catch (error) {
           console.log("Failed to fetch recipe", error);
         }
@@ -44,7 +48,7 @@ const RecipeDetails = () => {
   }, [id, selectedRecipe]);
 
   if (!recipe) {
-    return <p>Loading recipe...</p>;
+    return <p className='text-center font-Circular-Medium text-txt-black text-[1.2rem] mt-[1rem]'>Loading recipe details...</p>;
   }
 
   return (

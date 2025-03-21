@@ -61,6 +61,7 @@ const Home = () => {
 
   const handleDivClick = (recipe) => {
     setSelectedRecipe(recipe)
+    localStorage.setItem('recipe', JSON.stringify(recipe))
   }
 
   return (
