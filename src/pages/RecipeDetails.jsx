@@ -14,7 +14,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useRecipeContext } from '../contexts/RecipeContext';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getRecipeBySearch } from '../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +28,7 @@ const RecipeDetails = () => {
   const storedRecipe = localStorage.getItem('recipe');
   const [recipe, setRecipe] = useState(storedRecipe ? JSON.parse(storedRecipe) : selectedRecipe);
   const [isInsActive, setIsInsActive] = useState(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!recipe) {
@@ -55,7 +56,10 @@ const RecipeDetails = () => {
     <div className='flex justify-center flex-col w-full px-[2rem] pb-[2rem]'>
       <div>
         <div className='flex justify-between'>
-          <button className='text-[1.1rem] font-Circular-Medium text-txt-black py-[0.5rem] px-[1.2rem] rounded-2xl bg-btn-green cursor-pointer'>
+          <button
+            className='text-[1.1rem] font-Circular-Medium text-txt-black py-[0.5rem] px-[1.2rem] rounded-2xl bg-btn-green cursor-pointer'
+            onClick={() => navigate(-1)}
+          >
             <FontAwesomeIcon
               icon={faArrowLeft}
               className='mr-[0.5rem]'
@@ -72,14 +76,14 @@ const RecipeDetails = () => {
         </div>
         <div className='flex justify-center items-center mt-[1.5rem] w-full h-[25rem] rounded-2xl overflow-hidden'>
           <img
-            src={recipe.strMealThumb || recipe.strCategoryThumb}
+            src={recipe.strMealThumb}
             alt="recipe-img"
             className='w-full object-cover rounded-2xl'
           />
         </div>
       </div>
       <div className='mt-[1rem]'>
-        <h2 className='text-[1.8rem] text-txt-black font-Circular-Bold'>{recipe.strMeal || recipe.strCategory}</h2>
+        <h2 className='text-[1.8rem] text-txt-black font-Circular-Bold'>{recipe.strMeal}</h2>
         <div className='flex justify-center items-center w-full mt-[2rem] font-Circular-Medium text-txt-gray-black'>
           <div className='text-center w-full border-border border-r-[2px]'>
             <p>Area:</p>
@@ -87,7 +91,7 @@ const RecipeDetails = () => {
           </div>
           <div className='text-center w-full'>
             <p>Category:</p>
-            <p className='text-[1.4rem] leading-7'>{recipe.strCategory}</p>
+            <p className='text-[1.4rem] leading-7'>{recipe.strCategory || 'NA'}</p>
           </div>
         </div>
         <div className='mt-[2rem] text-txt-gray-black'>

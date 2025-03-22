@@ -3,7 +3,7 @@ import HeroSec from '../components/HeroSec'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import RecipeCard from '../components/RecipeCard'
-import { getPopularRecipes, getRecipeBySearch } from '../services/api'
+import { getPopularCategory, getRecipeBySearch } from '../services/api'
 import errorImg from '../assets/errorImg.png';
 import { Link } from 'react-router-dom'
 import { useRecipeContext } from '../contexts/RecipeContext'
@@ -16,11 +16,11 @@ const Home = () => {
   const { setSelectedRecipe } = useRecipeContext();
   const hasFetched = useRef(false);
 
-  const loadPopularRecipes = async () => {
+  const loadPopularCategory = async () => {
     try {
       setLoading(true)
-      const popularRecipes = await getPopularRecipes()
-      setRecipes(popularRecipes)
+      const popularCategory = await getPopularCategory()
+      setRecipes(popularCategory)
     } catch (error) {
       setError('Failed to load recipes...')
       console.log(error)
@@ -31,7 +31,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!hasFetched.current) {
-      loadPopularRecipes();
+      loadPopularCategory();
       hasFetched.current = true;
     }
   }, []);
@@ -68,7 +68,7 @@ const Home = () => {
     <div className='flex flex-col items-center justify-center'>
       <HeroSec />
       <div className='w-full py-[3rem] px-[3rem] bg-btn-green text-txt-black'>
-        <h1 className='font-Circular-Bold text-[1.7rem]'>Popular Recipes</h1>
+        <h1 className='font-Circular-Bold text-[1.7rem]'>Popular Categories</h1>
         <form onSubmit={handleSearchSubmit} className='flex items-center mt-[1.5rem] mb-[3rem]'>
           <input
             type="text"
@@ -103,8 +103,7 @@ const Home = () => {
           <div className='w-full grid grid-cols-[repeat(auto-fit,_minmax(12rem,_20rem))] items-center justify-center gap-x-[2rem] gap-y-[2rem]'>
             {recipes.map(recipe => (
               <Link
-                to={`/recipe/${recipe.idMeal || recipe.idCategory}`}
-                key={recipe.idMeal || recipe.idCategory}
+                to={recipe.idCategory ? `/categories/${recipe.strCategory}` : `/recipe/${recipe.idMeal}`}
                 onClick={() => handleDivClick(recipe)}
               >
                 <RecipeCard
