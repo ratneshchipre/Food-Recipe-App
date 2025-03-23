@@ -15,6 +15,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true)
   const { setSelectedRecipe } = useRecipeContext();
   const hasFetched = useRef(false);
+  const sectionRef = useRef(null);
 
   const loadPopularCategory = async () => {
     try {
@@ -43,13 +44,17 @@ const Home = () => {
     if (loading) return
 
     setLoading(true)
+    setError(null)
 
     try {
       setLoading(true)
       const searchedRecipes = await getRecipeBySearch(inputValue)
       console.log(searchedRecipes);
-      if (searchedRecipes != null) {
-        setRecipes(searchedRecipes)
+      if (searchedRecipes && searchedRecipes.length > 0) {
+        setRecipes(searchedRecipes);
+      } else {
+        setRecipes([]);
+        setError("No recipes found! Try searching something else.");
       }
     } catch (error) {
       setError('Failed to load recipes...')
@@ -66,8 +71,8 @@ const Home = () => {
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      <HeroSec />
-      <div className='w-full py-[3rem] px-[3rem] bg-btn-green text-txt-black'>
+      <HeroSec sectionRef={sectionRef} />
+      <div className='w-full py-[3rem] px-[3rem] bg-btn-green text-txt-black' ref={sectionRef}>
         <h1 className='font-Circular-Bold text-[1.7rem]'>Popular Categories</h1>
         <form onSubmit={handleSearchSubmit} className='flex items-center mt-[1.5rem] mb-[3rem]'>
           <input

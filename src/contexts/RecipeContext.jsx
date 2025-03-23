@@ -6,20 +6,37 @@ export const useRecipeContext = () => useContext(RecipeContext)
 
 export const RecipeProvider = ({ children }) => {
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [favorites, setFavorites] = useState(() => {
+        const storedFavs = localStorage.getItem('favorites');
+        return storedFavs ? JSON.parse(storedFavs) : []
+    })
 
-    // const [favorites, setFavorites] = useState(() => {
-    //     const storedFavs = localStorage.getItem('favorites');
-    //     return storedFavs ? JSON.parse(storedFavs) : []
-    // })
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+    }, [favorites])
 
-    // const value = {
-    //     favorites,
-    //     addToFavs,
-    //     removeFromFavs,
-    //     isFavs
-    // }
+    const addToFavs = (recipe) => {
+        setFavorites((prev) => [...prev, recipe])
+    }
 
-    return <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe }}>
+    const removeFromFavs = (recipeId) => {
+        setFavorites((prev) => prev.filter(recipe => recipe.id !== recipeId))
+    }
+
+    const isFavs = (recipeId) => {
+        return favorites.some(recipe => recipe.id === recipeId)
+    }
+
+    const value = {
+        selectedRecipe,
+        setSelectedRecipe,
+        favorites,
+        addToFavs,
+        removeFromFavs,
+        isFavs
+    }
+
+    return <RecipeContext.Provider value={value}>
         {children}
     </RecipeContext.Provider>
 }

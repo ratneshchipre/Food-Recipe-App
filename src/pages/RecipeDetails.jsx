@@ -29,6 +29,8 @@ const RecipeDetails = () => {
   const [recipe, setRecipe] = useState(storedRecipe ? JSON.parse(storedRecipe) : selectedRecipe);
   const [isInsActive, setIsInsActive] = useState(false)
   const navigate = useNavigate();
+  const { isFavs, addToFavs, removeFromFavs } = useRecipeContext()
+  const isFavorites = isFavs(recipe.id)
 
   useEffect(() => {
     if (!recipe) {
@@ -48,6 +50,11 @@ const RecipeDetails = () => {
     }
   }, [id, selectedRecipe]);
 
+  const handleFavorites = () => {
+    if (isFavorites) removeFromFavs(recipe.id)
+    else addToFavs(recipe)
+  }
+
   if (!recipe) {
     return <p className='text-center font-Circular-Medium text-txt-black text-[1.2rem] mt-[1rem]'>Loading recipe details...</p>;
   }
@@ -66,9 +73,12 @@ const RecipeDetails = () => {
             />
             Back
           </button>
-          <button className='text-[1.1rem] font-Circular-Medium text-txt-black py-[0.5rem] px-[1.2rem] rounded-2xl bg-btn-green cursor-pointer'>
+          <button
+            className='text-[1.1rem] font-Circular-Medium text-txt-black py-[0.5rem] px-[1.2rem] rounded-2xl bg-btn-green cursor-pointer'
+            onClick={handleFavorites}
+          >
             <FontAwesomeIcon
-              icon={faHeartRegular}
+              icon={isFavorites ? faHeartSolid : faHeartRegular}
               className='mr-[0.5rem]'
             />
             Add To Favorites

@@ -51,7 +51,11 @@ const Categories = () => {
                 </div>
             }
 
-            {loading && !error ? (
+            {categories.length === 0 && !loading && !error ? (
+                <div className='mt-[0.5rem]'>
+                    <p className='font-Circular-Medium text-txt-black text-[1.1rem]'>Nothing here! Try different category.</p>
+                </div>
+            ) : (loading && !error ? (
                 <div className='flex justify-center items-center mt-[3rem]'>
                     <p className='text-[1.5rem] font-Circular-Medium text-center'>Please Wait...</p>
                 </div>
@@ -69,7 +73,7 @@ const Categories = () => {
                         </Link>
                     ))}
                 </div>
-            )}
+            ))}
         </div>
     )
 }
