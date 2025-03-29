@@ -1,5 +1,5 @@
 import React from 'react'
-import landing_Img from '../assets/landing_Img.png';
+import landingImg from '../assets/landingImg.png';
 import save_Personalize from '../assets/save_Personalize.png';
 import recipe_Search from '../assets/recipe_Search.png';
 import recipe_Guide from '../assets/recipe_Guide.png';
@@ -24,7 +24,7 @@ const HeroSec = ({ sectionRef }) => {
         </div>
         <div className="w-[80%] flex justify-end items-center">
           <img
-            src={landing_Img}
+            src={landingImg}
             className=""
           />
         </div>
