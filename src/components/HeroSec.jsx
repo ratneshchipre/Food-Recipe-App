@@ -22,7 +22,7 @@ const HeroSec = ({ sectionRef }) => {
             <FontAwesomeIcon icon={faSearch} className='xl:text-[1.1rem]'/>
           </button>
         </div>
-        <div className="w-[90%] tablet:w-[75%] tablet-2:w-[75%] md:w-[150%] lg:w-[100%] flex justify-end items-center">
+        <div className="w-[95%] tablet:w-[75%] tablet-2:w-[75%] md:w-[150%] lg:w-[100%] flex justify-end items-center">
           <img
             src={landingImg}
             className=""
