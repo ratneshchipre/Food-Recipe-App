@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getRecipeBySearch } from '../services/api'
 import RecipeCard from '../components/RecipeCard'
 import errorImg from '../assets/errorImg.png';
-import { useRecipeContext } from '../contexts/RecipeContext';
 
 const Categories = () => {
     const { categoryName } = useParams()
     const [categories, setcategories] = useState([])
-    console.log(categories);
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
-    const { setSelectedRecipe } = useRecipeContext();
 
     useEffect(() => {
         const loadCategories = async () => {
@@ -30,11 +27,6 @@ const Categories = () => {
         }
         loadCategories();
     }, [])
-
-    const handleDivClick = (recipe) => {
-        setSelectedRecipe(recipe)
-        localStorage.setItem('recipe', JSON.stringify(recipe))
-    }
 
     return (
         <div className='flex justify-center flex-col w-full px-[2rem] pb-[2rem]'>
@@ -62,15 +54,10 @@ const Categories = () => {
             ) : (
                 <div className='w-full mt-[2rem] grid grid-cols-[repeat(auto-fit,_minmax(12rem,_20rem))] items-center justify-center gap-x-[2rem] gap-y-[2rem]'>
                     {categories.map(recipe => (
-                        <Link
-                            to={`/recipe/${recipe.idMeal}`}
-                            onClick={() => handleDivClick(recipe)}
-                        >
-                            <RecipeCard
-                                key={recipe.id}
-                                recipe={recipe}
-                            />
-                        </Link>
+                        <RecipeCard
+                            key={recipe.id}
+                            recipe={recipe}
+                        />
                     ))}
                 </div>
             ))}

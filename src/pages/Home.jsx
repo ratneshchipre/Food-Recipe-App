@@ -5,15 +5,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import RecipeCard from '../components/RecipeCard'
 import { getPopularCategory, getRecipeBySearch } from '../services/api'
 import errorImg from '../assets/errorImg.png';
-import { Link } from 'react-router-dom'
-import { useRecipeContext } from '../contexts/RecipeContext'
 
 const Home = () => {
   const inputRef = useRef()
   const [recipes, setRecipes] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
-  const { setSelectedRecipe } = useRecipeContext();
   const hasFetched = useRef(false);
   const sectionRef = useRef(null);
 
@@ -49,7 +46,6 @@ const Home = () => {
     try {
       setLoading(true)
       const searchedRecipes = await getRecipeBySearch(inputValue)
-      console.log(searchedRecipes);
       if (searchedRecipes && searchedRecipes.length > 0) {
         setRecipes(searchedRecipes);
       } else {
@@ -62,11 +58,6 @@ const Home = () => {
     } finally {
       setLoading(false)
     }
-  }
-
-  const handleDivClick = (recipe) => {
-    setSelectedRecipe(recipe)
-    localStorage.setItem('recipe', JSON.stringify(recipe))
   }
 
   return (
@@ -107,15 +98,10 @@ const Home = () => {
         ) : (
           <div className='w-full grid grid-cols-[repeat(auto-fit,_minmax(12rem,_20rem))] items-center justify-center gap-x-[2rem] gap-y-[2rem]'>
             {recipes.map(recipe => (
-              <Link
-                to={recipe.idCategory ? `/categories/${recipe.strCategory}` : `/recipe/${recipe.idMeal}`}
-                onClick={() => handleDivClick(recipe)}
-              >
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                />
-              </Link>
+              <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+              />
             ))}
           </div>
         )}
