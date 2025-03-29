@@ -20,11 +20,11 @@ export const RecipeProvider = ({ children }) => {
     }
 
     const removeFromFavs = (recipeId) => {
-        setFavorites((prev) => prev.filter(recipe => recipe.id !== recipeId))
+        setFavorites((prev) => prev.filter(recipe => (recipe.idCategory || recipe.idMeal) !== recipeId))
     }
 
     const isFavs = (recipeId) => {
-        return favorites.some(recipe => recipe.id === recipeId)
+        return favorites.some(recipe => (recipe.idCategory || recipe.idMeal) === recipeId)
     }
 
     const value = {

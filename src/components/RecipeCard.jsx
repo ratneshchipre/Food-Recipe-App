@@ -6,10 +6,10 @@ import { useRecipeContext } from '../contexts/RecipeContext'
 
 const RecipeCard = ({ recipe }) => {
     const { isFavs, addToFavs, removeFromFavs } = useRecipeContext()
-    const isFavorites = isFavs(recipe.id)
+    const isFavorites = isFavs(recipe.idCategory || recipe.idMeal)
 
     const handleFavorites = () => {
-        if (isFavorites) removeFromFavs(recipe.id)
+        if (isFavorites) removeFromFavs(recipe.idCategory || recipe.idMeal)
         else addToFavs(recipe)
     }
 

@@ -30,7 +30,7 @@ const RecipeDetails = () => {
   const [isInsActive, setIsInsActive] = useState(false)
   const navigate = useNavigate();
   const { isFavs, addToFavs, removeFromFavs } = useRecipeContext()
-  const isFavorites = isFavs(recipe.id)
+  const isFavorites = isFavs(recipe.idCategory || recipe.idMeal)
 
   useEffect(() => {
     if (!recipe) {
@@ -51,7 +51,7 @@ const RecipeDetails = () => {
   }, [id, selectedRecipe]);
 
   const handleFavorites = () => {
-    if (isFavorites) removeFromFavs(recipe.id)
+    if (isFavorites) removeFromFavs(recipe.idCategory || recipe.idMeal)
     else addToFavs(recipe)
   }
 
