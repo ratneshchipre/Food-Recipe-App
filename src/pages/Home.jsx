@@ -63,22 +63,24 @@ const Home = () => {
   return (
     <div className='flex flex-col items-center justify-center'>
       <HeroSec sectionRef={sectionRef} />
-      <div className='w-full py-[3rem] px-[3rem] bg-btn-green text-txt-black' ref={sectionRef}>
-        <h1 className='font-Circular-Bold text-[1.7rem]'>Popular Categories</h1>
-        <form onSubmit={handleSearchSubmit} className='flex items-center mt-[1.5rem] mb-[3rem]'>
-          <input
-            type="text"
-            placeholder='Search for Recipe...'
-            className='font-Circular-Medium py-[0.5rem] px-[1.2rem] bg-white border-[1.5px] outline-none border-nav-green rounded-l-[1rem] w-full'
-            ref={inputRef}
-          />
-          <button className='bg-nav-green py-[0.5rem] px-[1.2rem] border-[1.5px] border-nav-green rounded-r-[1rem] cursor-pointer'>
-            <FontAwesomeIcon
-              icon={faSearch}
-              className='text-white'
+      <div className='w-full py-[3rem] px-[2.5rem] tablet:px-[2.8rem] sm:px-[3rem] md:px-[3.2rem] lg:px-[3.5rem] bg-btn-green text-txt-black' ref={sectionRef}>
+        <div className='flex flex-col lg:flex-row lg:justify-between'>
+          <h1 className='font-Circular-Bold text-[1.7rem]'>Popular Categories</h1>
+          <form onSubmit={handleSearchSubmit} className='flex items-center mt-[1.5rem] lg:mt-[0rem] mb-[3rem] lg:w-[60%]'>
+            <input
+              type="text"
+              placeholder='Search for Recipe...'
+              className='font-Circular-Medium py-[0.5rem] px-[1.2rem] bg-white border-[1.5px] outline-none border-nav-green rounded-l-[1rem] w-full'
+              ref={inputRef}
             />
-          </button>
-        </form>
+            <button className='bg-nav-green py-[0.5rem] px-[1.2rem] border-[1.5px] border-nav-green rounded-r-[1rem] cursor-pointer'>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className='text-white'
+              />
+            </button>
+          </form>
+        </div>
 
         {error &&
           <div className='flex flex-col items-center justify-center'>

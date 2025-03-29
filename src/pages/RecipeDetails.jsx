@@ -60,7 +60,7 @@ const RecipeDetails = () => {
   }
 
   return (
-    <div className='flex justify-center flex-col w-full px-[2rem] pb-[2rem]'>
+    <div className='flex justify-center flex-col w-full px-[1.8rem] tablet:px-[2.4rem] mini-desktop:px-[3rem] lg:px-[3.5rem] xl:px-[5rem] pb-[2rem]'>
       <div>
         <div className='flex justify-between'>
           <button
@@ -84,70 +84,72 @@ const RecipeDetails = () => {
             Add To Favorites
           </button>
         </div>
-        <div className='flex justify-center items-center mt-[1.5rem] w-full h-[25rem] rounded-2xl overflow-hidden'>
+      </div>
+      <div className='mt-[1.5rem] flex flex-col md:flex-row md:justify-between gap-[0.8rem] md:gap-[3rem]'>
+        <div className='flex justify-center items-center w-full h-[22rem] tablet:h-[26rem] tablet-2:h-[28rem] md:w-[45%] md:h-[20rem] mini-desktop:w-[45%] mini-desktop:h-[22rem] xl:h-[30rem] rounded-2xl overflow-hidden'>
           <img
             src={recipe.strMealThumb}
             alt="recipe-img"
             className='w-full object-cover rounded-2xl'
           />
         </div>
-      </div>
-      <div className='mt-[1rem]'>
-        <h2 className='text-[1.8rem] text-txt-black font-Circular-Bold'>{recipe.strMeal}</h2>
-        <div className='flex justify-center items-center w-full mt-[2rem] font-Circular-Medium text-txt-gray-black'>
-          <div className='text-center w-full border-border border-r-[2px]'>
-            <p>Area:</p>
-            <p className='text-[1.4rem] leading-7'>{recipe.strArea || 'NA'}</p>
+        <div className='md:w-[55%] mini-desktop:w-[55%] md:overflow-y-scroll md:h-[30rem] md:pr-[1.5rem]'>
+          <h2 className='text-[1.8rem] text-txt-black font-Circular-Bold'>{recipe.strMeal}</h2>
+          <div className='flex justify-center items-center w-full mt-[2rem] font-Circular-Medium text-txt-gray-black'>
+            <div className='text-center w-full border-border border-r-[2px]'>
+              <p>Area:</p>
+              <p className='text-[1.4rem] leading-7'>{recipe.strArea || 'NA'}</p>
+            </div>
+            <div className='text-center w-full'>
+              <p>Category:</p>
+              <p className='text-[1.4rem] leading-7'>{recipe.strCategory || 'NA'}</p>
+            </div>
           </div>
-          <div className='text-center w-full'>
-            <p>Category:</p>
-            <p className='text-[1.4rem] leading-7'>{recipe.strCategory || 'NA'}</p>
-          </div>
-        </div>
-        <div className='mt-[2rem] text-txt-gray-black'>
-          <h2 className='text-[1.2rem] font-Circular-Bold w-full border-border border-b-[2px] pb-[1rem]'>Ingredients</h2>
-          <div className='mt-[0.7rem] font-Circular-Medium'>
-            {(() => {
-              const availableIngredients = [];
+          <div className='mt-[2rem] text-txt-gray-black'>
+            <h2 className='text-[1.2rem] font-Circular-Bold w-full border-border border-b-[2px] pb-[1rem]'>Ingredients</h2>
+            <div className='mt-[0.7rem] font-Circular-Medium'>
+              {(() => {
+                const availableIngredients = [];
 
-              for (let i = 1; i <= 20; i++) {
-                const ingredient = recipe[`strIngredient${i}`];
-                const measure = recipe[`strMeasure${i}`];
+                for (let i = 1; i <= 20; i++) {
+                  const ingredient = recipe[`strIngredient${i}`];
+                  const measure = recipe[`strMeasure${i}`];
 
-                if (ingredient && ingredient.trim() !== "") {
-                  availableIngredients.push(`${measure} ${ingredient}`);
+                  if (ingredient && ingredient.trim() !== "") {
+                    availableIngredients.push(`${measure} ${ingredient}`);
+                  }
                 }
-              }
 
-              return availableIngredients.length > 0 ? (
-                <ul className='list-disc ml-[1rem]'>
-                  {availableIngredients.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>⚠️ No ingredients available for this recipe, try searching another recipe.</p>
-              );
-            })()}
+                return availableIngredients.length > 0 ? (
+                  <ul className='list-disc ml-[1rem]'>
+                    {availableIngredients.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>⚠️ No ingredients available for this recipe, try searching another recipe.</p>
+                );
+              })()}
+            </div>
           </div>
-        </div>
-        <div className='mt-[2rem] text-txt-gray-black' onClick={() => setIsInsActive(!isInsActive)}>
-          <div className='flex justify-between items-center border-border border-b-[2px] py-[0.5rem] cursor-pointer'>
-            <h2 className='font-Circular-Bold text-[1.2rem] '>Instructions</h2>
-            <FontAwesomeIcon
-              icon={isInsActive ? faCaretUp : faCaretDown}
-              className='self-center text-[1.4rem]'
-            />
+          <div className='mt-[2rem] text-txt-gray-black' onClick={() => setIsInsActive(!isInsActive)}>
+            <div className='flex justify-between items-center border-border border-b-[2px] py-[0.5rem] cursor-pointer'>
+              <h2 className='font-Circular-Bold text-[1.2rem] '>Instructions</h2>
+              <FontAwesomeIcon
+                icon={isInsActive ? faCaretUp : faCaretDown}
+                className='self-center text-[1.4rem]'
+              />
+            </div>
+            {isInsActive && <p className='mt-[0.7rem] font-Circular-Medium'>{recipe.strInstructions && recipe.strInstructions !== '' ? recipe.strInstructions : <p>⚠️ No instructions available for this recipe, try searching another recipe.</p>}</p>}
           </div>
-          {isInsActive && <p className='mt-[0.7rem] font-Circular-Medium'>{recipe.strInstructions && recipe.strInstructions !== '' ? recipe.strInstructions : <p>⚠️ No instructions available for this recipe, try searching another recipe.</p>}</p>}
-        </div>
-        <div className='flex justify-center items-center mt-[1.5rem]'>
-          <Link to={recipe.strYoutube}>
-            <button className='font-Circular-Medium text-txt-black py-[0.5rem] px-[1rem] flex rounded-2xl cursor-pointer bg-bg-yt-red'>
-              Watch on
-              <img src={youtube_Logo} alt="youtube-logo" className='h-[1.5rem] ml-[0.5rem]' />
-            </button>
-          </Link>
+          <div className='flex justify-center items-center mt-[1.5rem]'>
+            <Link to={recipe.strYoutube}>
+              <button className='font-Circular-Medium text-txt-black py-[0.5rem] px-[1rem] flex rounded-2xl cursor-pointer bg-bg-yt-red'>
+                Watch on
+                <img src={youtube_Logo} alt="youtube-logo" className='h-[1.5rem] ml-[0.5rem]' />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

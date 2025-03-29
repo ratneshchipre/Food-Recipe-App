@@ -29,7 +29,7 @@ const Categories = () => {
     }, [])
 
     return (
-        <div className='flex justify-center flex-col w-full px-[2rem] pb-[2rem]'>
+        <div className='flex justify-center flex-col w-full px-[2rem] tablet-2:px-[2.5rem] mini-desktop:px-[2.8rem] lg:px-[3.5rem] xl:px-[4.5rem] pb-[2rem]'>
             <h1 className='font-Circular-Bold text-[1.7rem] text-txt-gray-black'>Categories of <span className='text-txt-black'>{categoryName}</span></h1>
 
             {error &&
