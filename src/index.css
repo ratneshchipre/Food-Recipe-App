@@ -28,6 +28,7 @@
     --color-border: #C8C7C7;
     --color-bg-yt-red: #F3C3C3;
     --color-fav-bg: #0000003b;
+    --breakpoint-mobile: 480px;
     --breakpoint-tablet: 550px;
     --breakpoint-tablet-2: 700px;
     --breakpoint-mini-desktop: 900px;
