@@ -1,12 +1,27 @@
-# React + Vite
+# Fork & Fire - A Recipe App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://github.com/user-attachments/assets/d32a1f12-a421-4e83-ac89-ab61fa9e856c
 
-Currently, two official plugins are available:
+Introducing Fork & Fire, the ultimate recipe discovery app that brings the joy of cooking right to your fingertips! Whether you're a seasoned chef or just starting your culinary journey, this app is designed to make cooking effortless, fun, and inspiring.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 👇 Live preview
+https://food-recipe-app-ratnesh-chipres-projects.vercel.app/
 
-## Expanding the ESLint configuration
+## 🌟 Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ Explore a World of Recipes – Browse a vast collection of global dishes using the MealDB API.<br>
+✅ Seamless Navigation – A clean, user-friendly interface for smooth browsing.<br>
+✅ Detailed Recipe Pages – View name, image, ingredients, instructions, and category.<br>
+✅ Smart Favorites System ❤️ – Save and access your favorite recipes anytime.<br>
+✅ Category-Based Browsing – Filter recipes by Beef, Chicken, Vegetarian, Desserts, etc.<br>
+✅ Quick Search & Discover 🔍 – Find recipes instantly by name, ingredient, or category.<br>
+✅ Optimized for Web & Mobile 📱💻 – Fully responsive design for all devices.<br>
+✅ Smooth Animations 🎨 – Framer Motion ensures a sleek user experience.<br>
+✅ Local Storage Integration 💾 – Favorites persist even after page reloads.<br>
+
+## 🛠️ Built With
+
+- React.js
+- Tailwind CSS
+- Framer Motion
+- MealDB APi
